@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun!</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<canvas id="floating-canvas"></canvas>
+    <!-- 1. PIN LOCK SCREEN -->
+    <div id="pin-screen" class="screen">
+        <div class="pin-card">
+            <div class="icon-sparkle">✦</div>
+            <h2>Untuk Kamu, Cintaku</h2>
+            <p>Masukkan kode rahasia kita</p>
+            <div class="pin-dots">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            </div>
+            <div class="keypad">
+                <button onclick="pressPin('1')">1</button>
+                <button onclick="pressPin('2')">2</button>
+                <button onclick="pressPin('3')">3</button>
+                <button onclick="pressPin('4')">4</button>
+                <button onclick="pressPin('5')">5</button>
+                <button onclick="pressPin('6')">6</button>
+                <button onclick="pressPin('7')">7</button>
+                <button onclick="pressPin('8')">8</button>
+                <button onclick="pressPin('9')">9</button>
+                <button onclick="clearPin()">✕</button>
+                <button onclick="pressPin('0')">0</button>
+                <button onclick="submitPin()">✓</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. GIFT BOX SCREEN -->
+    <div id="gift-screen" class="screen hidden">
+        <div class="gift-container" onclick="openGift()">
+            <p class="gift-title">Ketuk kotak hadiah untuk membukanya 🎁</p>
+            <div class="gift-box">🎁</div>
+        </div>
+    </div>
+
+    <!-- 3. MAIN DASHBOARD CONTENT -->
+    <div id="main-content" class="hidden">
+        
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <span class="subtitle">YOUR SPECIAL DAY</span>
+            <h1 class="main-title">Happy Birthday<br><span class="highlight">Idaaa
+            </span></h1>
+            <p class="date">THE MOST SPECIAL DAY</p>
+            
+            <div class="cake-container" onclick="blowCandle()">
+                <button class="btn-bubble">Tiup/Klik untuk meniup! 🕯️</button>
+                <div class="cake-emoji">🎂</div>
+            </div>
+
+            <div class="banner-box">
+                <p>Happy Birthday! Idaaa yang paling istimewa 🌸</p>
+                <span>— DENGAN CINTA YANG TIDAK PERNAH HABIS —</span>
+            </div>
+        </section>
+
+        <!-- Digital Bouquet -->
+        <section class="section bouquet-section">
+            <span class="section-tag">MY FIRST GIFT</span>
+            <h2>Digital Bouquet</h2>
+            <p>Setiap bunga menyimpan pesan kecil untukmu</p>
+            <div class="flowers-grid">
+                <button class="flower-btn" onclick="showFlowerMsg('🌷 Kamu secantik bunga tulip di musim semi!')">🌷</button>
+                <button class="flower-btn" onclick="showFlowerMsg('🌸 Kamu selalu cerah, selalu memikat!')">🌸</button>
+                <button class="flower-btn" onclick="showFlowerMsg('🌺 Kehadiranmu membawa warna indah!')">🌺</button>
+                <button class="flower-btn" onclick="showFlowerMsg('🌻 Kamu adalah sinar matahari di hariku!')">🌻</button>
+            </div>
+            <div id="flower-message" class="message-card">Ketuk salah satu bunga di atas</div>
+        </section>
+
+        <!-- Polaroid Gallery / Momen Indah Kita -->
+<div class="polaroid-grid">
+    
+    <!-- Foto 1 -->
+    <div class="polaroid-card" onclick="revealPhoto(this)">
+        <div class="cover">📷 Ketuk untuk mengungkap</div>
+        <img src="image/ft 1.png" alt="Foto 1">
+        <h3 class="caption-title">Pesona yang Memukau</h3>
+        <p class="caption">Senyumanmu membuat waktu terasa berhenti sejenak.</p>
+    </div>
+
+    <!-- Foto 2 -->
+    <div class="polaroid-card" onclick="revealPhoto(this)">
+        <div class="cover">📷 Ketuk untuk mengungkap</div>
+        <img src="image/ft 2.png" alt="Foto 2">
+        <h3 class="caption-title">Ganteng Tanpa Tara</h3>
+        <p class="caption">Senyuman adalah kebahagiaan di tengah dinginnya dunia.</p>
+    </div>
+
+    <!-- Foto 3 -->
+    <div class="polaroid-card" onclick="revealPhoto(this)">
+        <div class="cover">📷 Ketuk untuk mengungkap</div>
+        <img src="image/ft 3.png" alt="Foto 3">
+        <h3 class="caption-title">Momen Berkesan</h3>
+        <p class="caption">Setiap detik bersamamu adalah cerita yang tak terlupakan.</p>
+    </div>
+
+</div>
+
+        <!-- Timeline Section -->
+        <section class="section timeline-section">
+            <span class="section-tag">OUR STORY</span>
+            <h2>Jurnal Perjalanan Cinta Kita</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h3>📍 Titik Awal</h3>
+                        <p>Pertemuan yang tak pernah direncanakan, namun menjadi takdir terbaik.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="content">
+                        <h3>🌙 Malam-Malam Panjang</h3>
+                        <p>Percakapan yang tak pernah terasa cukup hingga larut malam.</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="content">
+                        <h3>🌱 Bertumbuh Bersama</h3>
+                        <p>Melawati hari demi hari dengan saling menguatkan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+       
+        <!-- Jar of Notes Section -->
+        <section class="section jar-section">
+            <span class="section-tag">FROM MY HEART TO YOURS</span>
+            <h2>Reasons I'm Grateful To Know You</h2>
+            <p>Klik dan ambil sebuah catatan 🫙</p>
+            <div class="jar-box">
+                <button class="btn-action" onclick="drawNote()">Klik Untuk Setiap Langkahnya 🎲</button>
+                <div id="note-display" class="note-card">
+                    "Klik tombol untuk mengambil pesan cinta..."
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <h3>Thank You, for everything. ❤️</h3>
+            <p>Semoga tahun ini membawa bahagia yang berlimpah untukmu.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,242 @@
+:root {
+    --bg-color: #2b1723;
+    --card-bg: #3d2232;
+    --accent-pink: #f7a8c4;
+    --text-color: #fceef3;
+    --text-sub: #dca6bc;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.hidden { display: none !important; }
+
+/* PIN Screen */
+.screen {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+.pin-card {
+    background-color: var(--card-bg);
+    padding: 30px 20px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.pin-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--accent-pink);
+}
+
+.dot.active { background-color: var(--accent-pink); }
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.keypad button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 18px;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.keypad button:hover { background: var(--accent-pink); color: #000; }
+
+/* Gift Box */
+.gift-box {
+    font-size: 80px;
+    cursor: pointer;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Main Dashboard */
+#main-content {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+}
+
+h1.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    margin: 10px 0;
+}
+
+.highlight { color: var(--accent-pink); }
+
+.cake-container { margin: 30px 0; cursor: pointer; }
+.cake-emoji { font-size: 70px; }
+
+.section {
+    margin: 50px 0;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 16px;
+}
+
+.section-tag {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent-pink);
+}
+
+.flower-btn {
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.message-card, .note-card {
+    margin-top: 15px;
+    padding: 15px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    font-style: italic;
+    color: var(--accent-pink);
+}
+
+/* Polaroid Grid */
+.polaroid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.polaroid-card {
+    background: #fff;
+    color: #333;
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+}
+
+.polaroid-card img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.polaroid-card .cover {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #523145;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 12px;
+    padding: 10px;
+    text-align: center;
+}
+
+.polaroid-card.open .cover { display: none; }
+
+/* Button Action */
+.btn-action, .btn-bubble {
+    background: var(--accent-pink);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #2b1723;
+}
+/* Canvas untuk animasi background melayang (bunga & partikel) */
+#floating-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Animasi Muncul Gradual (Fade In Up) */
+.fade-in {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animasi Kocok Toples (Jar Shake) */
+.shake {
+    animation: shakeJar 0.5s ease-in-out;
+}
+
+@keyframes shakeJar {
+    0%, 100% { transform: rotate(0deg); }
+    20% { transform: rotate(-12deg) scale(1.05); }
+    40% { transform: rotate(12deg) scale(1.05); }
+    60% { transform: rotate(-8deg); }
+    80% { transform: rotate(8deg); }
+}
+
+/* Animasi Mengambang Bunga Digital */
+.flower-btn {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.flower-btn:hover {
+    transform: scale(1.3) rotate(10deg);
+}
+
+/* Animasi Reveal Scroll */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+}
